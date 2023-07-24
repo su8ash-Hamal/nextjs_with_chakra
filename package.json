@@ -6,9 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "theme": "chakra-cli tokens src/theme/index.ts --out src/theme/chakra.d.ts",
+    "theme:watch": "chakra-cli tokens src/theme/theme.ts --watch",
+    "postinstall": "npm run theme theme:watch"
   },
   "dependencies": {
+    "@chakra-ui/next-js": "^2.1.5",
     "@chakra-ui/react": "^2.8.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -24,5 +28,8 @@
     "react-hook-form": "^7.45.2",
     "react-query": "^3.39.3",
     "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "@chakra-ui/cli": "^2.4.1"
   }
 }
