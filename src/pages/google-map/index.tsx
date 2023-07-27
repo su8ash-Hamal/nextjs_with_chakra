@@ -7,7 +7,7 @@ import {
     useJsApiLoader
 } from '@react-google-maps/api';
 import { GOOGLE_MAPS_API_KEY } from '@/constants/config';
-import { Box, Flex, Heading } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading } from '@chakra-ui/react';
 
 
 const containerStyle = {
@@ -15,10 +15,6 @@ const containerStyle = {
     height: "100%"
 };
 
-const center = {
-    lat: 40.7121,
-    lng: -74.005
-};
 
 interface Place {
     name: string,
@@ -27,9 +23,19 @@ interface Place {
 }
 
 
+interface Position {
+    lat: number,
+    lng: number,
+}
+
 const GoogleMapTest = () => {
 
     const [place, setPlace] = useState<Place>();
+
+    const [position, setPosition] = useState<Position>({
+        lat: 40.7121,
+        lng: -74.005
+    });
 
 
     const { isLoaded } = useJsApiLoader({
@@ -41,28 +47,60 @@ const GoogleMapTest = () => {
 
     const [selected, setSelected] = useState<boolean>(false)
 
-    const onLoad = React.useCallback(function callback(map: any) {
-        // This is just an example of getting and using the :any instance!!! don't just blindly copy!
-        const bounds = new window.google.maps.LatLngBounds(center);
-        map.fitBounds(bounds);
-
-        setMap(map)
-    }, [])
 
     const onUnmount = React.useCallback(function callback(map: any) {
         setMap(null)
     }, [])
 
+
+    const onLoad = React.useCallback(function callback(map: any) {
+        // This is just an example of getting and using the :any instance!!! don't just blindly copy!
+        const bounds = new window.google.maps.LatLngBounds(position);
+        map.fitBounds(bounds);
+
+        setMap(map)
+    }, [])
+
+
+    // Not Available for my api key
+    const getCoordinates = async (city: string) => {
+
+        const getCoordinates = `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${GOOGLE_MAPS_API_KEY}`
+
+        const response = await fetch(getCoordinates);
+
+        const geoCode = await response.json();
+
+        // const { lat, lng } = geoCode.results[0].geometry.location
+
+        console.log(response);
+        console.log(response.url)
+        console.log(geoCode);
+        // console.log(lat);
+        // console.log(lng);
+
+    }
+
+
+    const onhandleSubmit = async () => {
+        await getCoordinates("Tokyo");
+    }
+
+
     return isLoaded ? (
         <Flex direction={"column"} gap={"6"} justifyContent={"center"} alignItems={"center"}>
+            <Button onClick={onhandleSubmit}>
+                Get Coordinates
+            </Button>
+
             <Heading>Google Maps</Heading>
             <Box w={"700px"} h={"500px"} display={"flex"}>
                 <GoogleMap
                     mapContainerStyle={containerStyle}
-                    center={center}
+                    center={position}
                     zoom={12}
-                    // onLoad={onLoad}
-                    // onUnmount={onUnmount}
+                    onLoad={onLoad}
+                    onUnmount={onUnmount}
 
                     options={{
                         controlSize: 0,
@@ -97,8 +135,8 @@ const GoogleMapTest = () => {
 
 
                             position={{
-                                lat: place.latitude ?? center.lat,
-                                lng: place.longitude ?? center.lng
+                                lat: place.latitude ?? position.lat,
+                                lng: place.longitude ?? position.lng
                             }}
                         />
                     }
@@ -116,8 +154,8 @@ const GoogleMapTest = () => {
                                 setSelected(false);
                             }}
                             position={{
-                                lat: place.latitude ?? center.lat,
-                                lng: place.longitude ?? center.lng
+                                lat: place.latitude ?? position.lat,
+                                lng: place.longitude ?? position.lng
                             }}
                         >
                             <>
