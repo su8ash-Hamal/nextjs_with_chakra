@@ -16,6 +16,7 @@
     "@chakra-ui/react": "^2.8.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@hookform/resolvers": "^3.1.1",
     "@react-google-maps/api": "^2.19.0",
     "@types/node": "20.4.4",
     "@types/react": "18.2.15",
@@ -28,7 +29,8 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.2",
     "react-query": "^3.39.3",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@chakra-ui/cli": "^2.4.1"
