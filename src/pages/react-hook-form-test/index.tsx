@@ -4,6 +4,8 @@ import * as yup from "yup";
 import { chakra, FormControl, FormLabel, Input, FormHelperText, FormErrorMessage, Button } from "@chakra-ui/react";
 
 
+// Yup is used as law then react-hook-form acts as police and checks if the form is validation the law or not...
+
 // Don't keep unnecessary data schema which might lead to unexpected example.
 const schema = yup.object({
     // firstName: yup.string().required(),
