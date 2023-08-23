@@ -5,18 +5,18 @@ function ChipInput() {
     const [inputValue, setInputValue] = useState('');
     const [chips, setChips] = useState([]);
 
-    const handleInputChange = (event) => {
+    const handleInputChange = (event: any) => {
         setInputValue(event.target.value);
     };
 
-    const handleInputKeyDown = (event) => {
+    const handleInputKeyDown = (event: any) => {
         if (event.key === 'Enter' && inputValue.trim() !== '') {
             // setChips((prevChips) => [...prevChips, inputValue.trim()]);
             setInputValue('');
         }
     };
 
-    const handleChipRemove = (chip) => {
+    const handleChipRemove = (chip: any) => {
         setChips((prevChips) => prevChips.filter((c) => c !== chip));
     };
 
