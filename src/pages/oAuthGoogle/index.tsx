@@ -18,7 +18,7 @@ const OAuthGoogle = () => {
 
     const login = useGoogleLogin({
         onSuccess: tokenResponse => {
-            console.log(tokenResponse),
+            console.log(tokenResponse.a),
                 setdata(tokenResponse);
         }
 

@@ -1,3 +1,4 @@
+import CommonPageLayout from '@/Layouts/commonLayout'
 import { GOOGLE_CLIENT_ID, MOVIE_API_URL } from '@/constants/config'
 import theme from '@/theme'
 import { CacheProvider } from '@chakra-ui/next-js'
@@ -36,7 +37,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <ReactQueryDevtools initialIsOpen={true} />
         <CacheProvider>
           <ChakraProvider theme={theme}>
-            <Component {...pageProps} />
+            <CommonPageLayout>
+              <Component {...pageProps} />
+            </CommonPageLayout>
           </ChakraProvider>
         </CacheProvider>
       </QueryClientProvider>
