@@ -16,11 +16,17 @@ const DateRangePicker = () => {
             <Box display="flex" justifyContent="space-between">
                 <DatePicker
                     selected={startDate}
-                    onChange={(date) => setStartDate(date)}
+                    showTimeSelect
+                    onChange={(date) => {
+                        console.log("dates", date)
+                        console.log("dates", date)
+                        setStartDate(date);
+                    }}
                     selectsStart
+
                     startDate={startDate}
                     minDate={new Date()}
-                    endDate={endDate}
+                    // endDate={endDate}
                     placeholderText="Start Date"
                 />
                 <DatePicker
@@ -31,6 +37,17 @@ const DateRangePicker = () => {
                     endDate={endDate}
                     minDate={startDate}
                     placeholderText="End Date"
+                />
+
+
+                <DatePicker
+                    showTimeSelect
+                    showTimeSelectOnly
+                    timeFormat="HH:mm"
+                    timeIntervals={15}
+                    dateFormat="h:mm aa"
+                    timeCaption="Time"
+                    placeholderText="Select time"
                 />
             </Box>
         </div>
