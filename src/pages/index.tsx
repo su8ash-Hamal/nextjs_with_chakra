@@ -1,8 +1,9 @@
 import ChipInput from '@/components/ChipInput'
 import { API_URL } from '@/constants/config'
 import { paymentGatwayAPI } from '@/services/payment'
-import { Box, useColorMode } from '@chakra-ui/react'
+import { Box, VStack, useColorMode } from '@chakra-ui/react'
 import Head from 'next/head'
+import Link from 'next/link'
 import router from 'next/router'
 import { useMutation, useQuery } from 'react-query'
 
@@ -13,11 +14,11 @@ export default function Home() {
   const { colorMode, toggleColorMode } = useColorMode()
 
 
-  const { isLoading, error, data } = useQuery('users', () =>
-    fetch(`${API_URL}/users?limit=10`).then(res =>
-      res.json()
-    )
-  )
+  // const { isLoading, error, data } = useQuery('users', () =>
+  //   fetch(`${API_URL}/users?limit=10`).then(res =>
+  //     res.json()
+  //   )
+  // )
 
 
   const getPaymentReady = useMutation(['cart'], async (data: any) => paymentGatwayAPI(data), {
@@ -40,29 +41,17 @@ export default function Home() {
     },
   });
 
-  if (isLoading) {
-    return <h1>Loading...</h1>
-  }
+  // if (isLoading) {
+  //   return <h1>Loading...</h1>
+  // }
 
 
 
 
   return (
-    <Box>
-      {/* {
-        error ? <h2>Facing Error</h2> :
 
-          <h1>Hello</h1>
-      }
-
-
-      <div className="App">
-        <ChipInput />
-      </div> */}
-
-      <button onClick={() => {
-        getPaymentReady.mutate({});
-      }} >Test</button>
-    </Box>
+    <VStack>
+      <Link href={"/swiperv1"}>Hello Wor</Link>
+    </VStack>
   )
 }
