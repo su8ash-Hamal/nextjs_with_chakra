@@ -1,5 +1,6 @@
 import ChipInput from '@/components/ChipInput'
 import { API_URL } from '@/constants/config'
+import { HomeLinks } from '@/constants/data'
 import { paymentGatwayAPI } from '@/services/payment'
 import { Box, VStack, useColorMode } from '@chakra-ui/react'
 import Head from 'next/head'
@@ -51,7 +52,12 @@ export default function Home() {
   return (
 
     <VStack>
-      <Link href={"/swiperv1"}>Hello Wor</Link>
+      {
+        HomeLinks.map((item, index) => {
+          return (
+            <Link key={index} href={item.link}>{item.name}</Link>)
+        })
+      }
     </VStack>
   )
 }

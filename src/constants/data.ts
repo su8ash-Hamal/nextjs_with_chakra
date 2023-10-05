@@ -4,7 +4,7 @@ interface IHomeLinks {
 }
 
 
-const HomeLinks: IHomeLinks[] = [
+export const HomeLinks: IHomeLinks[] = [
     {
         name: "Date Picker",
         link: "datePicker"
@@ -35,10 +35,43 @@ const HomeLinks: IHomeLinks[] = [
     },
     {
         name: "Search and Select",
-        link: "RichTextUsingTipTap"
+        link: "searchAndSelect"
     },
     {
-        name: "Reac Hook",
-        link: "react-hook-form-test"
+        name: "Swiper",
+        link: "swiperv1"
+    },
+    {
+        name: "Use Query",
+        link: "use-query-test"
+    },
+    {
+        name: "Foodbourg delivery time picker",
+        link: "fd-delivery-timepicker"
+    },
+    {
+        name: "FB share",
+        link: "FBshare"
     }
-] 
+]
+
+
+
+export const initialDeliveryHours = {
+    "friday": [
+        {
+            "open": "2023-09-25T15:40:40.207Z",
+            "close": "2023-09-25T16:15:00.207Z"
+        },
+        {
+            "open": "2023-09-25T15:40:42.039Z",
+            "close": "2023-09-25T15:40:42.039Z"
+        }
+    ],
+    "monday": [],
+    "sunday": [],
+    "tuesday": [],
+    "saturday": [],
+    "thursday": [],
+    "wednesday": []
+};
